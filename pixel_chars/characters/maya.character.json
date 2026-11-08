@@ -1,0 +1,21 @@
+{
+ "name": "maya",
+ "library": "res://pixel_chars/library/human.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "skin": "#dea070",
+  "hair": "#be4a31",
+  "shirt": "#e6ecfa",
+  "pants": "#4a6496",
+  "glasses": "#3c405a"
+ },
+ "variants": {
+  "head": "long",
+  "torso": "default"
+ },
+ "extras": [
+  "glasses"
+ ]
+}

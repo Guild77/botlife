@@ -1,0 +1,711 @@
+{
+ "idle": {
+  "fps": 2,
+  "loop": true,
+  "frames": [
+   {
+    "upper": [
+     0,
+     0
+    ]
+   },
+   {
+    "upper": [
+     0,
+     1
+    ]
+   }
+  ]
+ },
+ "walk": {
+  "fps": 8,
+  "loop": true,
+  "frames": [
+   {
+    "p": {
+     "leg_l": "lift",
+     "leg_r": "stand",
+     "arm_l": "back",
+     "arm_r": "fwd"
+    }
+   },
+   {
+    "p": {
+     "leg_l": "stand",
+     "leg_r": "stand"
+    },
+    "upper": [
+     0,
+     1
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "stand",
+     "leg_r": "lift",
+     "arm_l": "fwd",
+     "arm_r": "back"
+    }
+   },
+   {
+    "p": {
+     "leg_l": "stand",
+     "leg_r": "stand"
+    },
+    "upper": [
+     0,
+     1
+    ]
+   }
+  ]
+ },
+ "run": {
+  "fps": 12,
+  "loop": true,
+  "frames": [
+   {
+    "p": {
+     "leg_l": "lift3",
+     "leg_r": "stand",
+     "arm_l": "back",
+     "arm_r": "fwd"
+    },
+    "all": [
+     0,
+     -1
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift",
+     "leg_r": "lift",
+     "arm_l": "down",
+     "arm_r": "down"
+    },
+    "all": [
+     0,
+     -3
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "stand",
+     "leg_r": "lift3",
+     "arm_l": "fwd",
+     "arm_r": "back"
+    },
+    "all": [
+     0,
+     -1
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift",
+     "leg_r": "lift",
+     "arm_l": "down",
+     "arm_r": "down"
+    },
+    "all": [
+     0,
+     -3
+    ]
+   }
+  ]
+ },
+ "jump": {
+  "fps": 8,
+  "loop": false,
+  "frames": [
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "back",
+     "arm_r": "back"
+    },
+    "upper": [
+     0,
+     2
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift",
+     "leg_r": "lift",
+     "arm_l": "up",
+     "arm_r": "up"
+    },
+    "all": [
+     0,
+     -3
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift3",
+     "leg_r": "lift3",
+     "arm_l": "up",
+     "arm_r": "up"
+    },
+    "all": [
+     0,
+     -8
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift3",
+     "leg_r": "lift3",
+     "arm_l": "out",
+     "arm_r": "out"
+    },
+    "all": [
+     0,
+     -8
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift",
+     "leg_r": "lift",
+     "arm_l": "out",
+     "arm_r": "out"
+    },
+    "all": [
+     0,
+     -3
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "out",
+     "arm_r": "out"
+    },
+    "upper": [
+     0,
+     2
+    ]
+   }
+  ]
+ },
+ "sit": {
+  "fps": 2,
+  "loop": true,
+  "frames": [
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "bent",
+     "arm_r": "bent"
+    },
+    "upper": [
+     0,
+     2
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "bent",
+     "arm_r": "bent"
+    },
+    "upper": [
+     0,
+     3
+    ]
+   }
+  ]
+ },
+ "lie": {
+  "fps": 2,
+  "loop": true,
+  "frames": [
+   {
+    "all": [
+     6,
+     11
+    ],
+    "rot": 90
+   },
+   {
+    "upper": [
+     0,
+     1
+    ],
+    "all": [
+     6,
+     11
+    ],
+    "rot": 90
+   }
+  ]
+ },
+ "type": {
+  "fps": 10,
+  "loop": true,
+  "frames": [
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "reach_a",
+     "arm_r": "reach_b"
+    },
+    "upper": [
+     0,
+     2
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "reach_b",
+     "arm_r": "reach_b"
+    },
+    "upper": [
+     0,
+     2
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "reach_b",
+     "arm_r": "reach_a"
+    },
+    "upper": [
+     0,
+     3
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "reach_a",
+     "arm_r": "reach_a"
+    },
+    "upper": [
+     0,
+     2
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "reach_a",
+     "arm_r": "reach_b"
+    },
+    "upper": [
+     0,
+     2
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "reach_b",
+     "arm_r": "reach_a"
+    },
+    "upper": [
+     0,
+     3
+    ]
+   }
+  ]
+ },
+ "write": {
+  "fps": 6,
+  "loop": true,
+  "frames": [
+   {
+    "p": {
+     "arm_l": "down",
+     "arm_r": [
+      "up",
+      -1,
+      0
+     ]
+    },
+    "props": [
+     {
+      "id": "pen",
+      "x": 11,
+      "y": 3
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "down",
+     "arm_r": [
+      "up",
+      0,
+      0
+     ]
+    },
+    "upper": [
+     0,
+     0
+    ],
+    "props": [
+     {
+      "id": "pen",
+      "x": 12,
+      "y": 3
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "down",
+     "arm_r": [
+      "up",
+      1,
+      0
+     ]
+    },
+    "props": [
+     {
+      "id": "pen",
+      "x": 13,
+      "y": 3
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "down",
+     "arm_r": [
+      "up",
+      0,
+      0
+     ]
+    },
+    "upper": [
+     0,
+     1
+    ],
+    "props": [
+     {
+      "id": "pen",
+      "x": 12,
+      "y": 3
+     }
+    ]
+   }
+  ]
+ },
+ "basket_dribble": {
+  "fps": 8,
+  "loop": true,
+  "frames": [
+   {
+    "p": {
+     "arm_l": "down",
+     "arm_r": "fwd"
+    },
+    "props": [
+     {
+      "id": "ball",
+      "x": 10,
+      "y": 8
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "down",
+     "arm_r": "back"
+    },
+    "upper": [
+     0,
+     1
+    ],
+    "props": [
+     {
+      "id": "ball",
+      "x": 10,
+      "y": 13
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "down",
+     "arm_r": "back"
+    },
+    "upper": [
+     0,
+     1
+    ],
+    "props": [
+     {
+      "id": "ball",
+      "x": 10,
+      "y": 17
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "down",
+     "arm_r": "fwd"
+    },
+    "props": [
+     {
+      "id": "ball",
+      "x": 10,
+      "y": 12
+     }
+    ]
+   }
+  ]
+ },
+ "basket_shoot": {
+  "fps": 8,
+  "loop": false,
+  "frames": [
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "bent",
+     "arm_r": "bent"
+    },
+    "upper": [
+     0,
+     2
+    ],
+    "props": [
+     {
+      "id": "ball",
+      "x": 4,
+      "y": 9
+     }
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift",
+     "leg_r": "lift",
+     "arm_l": "up",
+     "arm_r": "up"
+    },
+    "all": [
+     0,
+     -3
+    ],
+    "props": [
+     {
+      "id": "ball",
+      "x": 4,
+      "y": -2
+     }
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift3",
+     "leg_r": "lift3",
+     "arm_l": "up",
+     "arm_r": "up"
+    },
+    "all": [
+     0,
+     -7
+    ],
+    "props": [
+     {
+      "id": "ball",
+      "x": 4,
+      "y": -9
+     }
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift3",
+     "leg_r": "lift3",
+     "arm_l": "up",
+     "arm_r": "up"
+    },
+    "all": [
+     0,
+     -7
+    ],
+    "props": [
+     {
+      "id": "ball",
+      "x": 4,
+      "y": -13
+     }
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "lift",
+     "leg_r": "lift",
+     "arm_l": "out",
+     "arm_r": "out"
+    },
+    "all": [
+     0,
+     -3
+    ],
+    "props": [
+     {
+      "id": "ball",
+      "x": 4,
+      "y": -14
+     }
+    ]
+   },
+   {
+    "p": {
+     "leg_l": "sit",
+     "leg_r": "sit",
+     "arm_l": "down",
+     "arm_r": "down"
+    },
+    "upper": [
+     0,
+     2
+    ]
+   }
+  ]
+ },
+ "pingpong_ready": {
+  "fps": 4,
+  "loop": true,
+  "frames": [
+   {
+    "p": {
+     "arm_l": "bent",
+     "arm_r": "bent"
+    },
+    "props": [
+     {
+      "id": "paddle",
+      "x": 9,
+      "y": 6
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "bent",
+     "arm_r": "bent"
+    },
+    "upper": [
+     0,
+     1
+    ],
+    "props": [
+     {
+      "id": "paddle",
+      "x": 9,
+      "y": 7
+     }
+    ]
+   }
+  ]
+ },
+ "pingpong_hit": {
+  "fps": 10,
+  "loop": false,
+  "frames": [
+   {
+    "p": {
+     "arm_l": "bent",
+     "arm_r": "bent"
+    },
+    "props": [
+     {
+      "id": "paddle",
+      "x": 9,
+      "y": 6
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "bent",
+     "arm_r": "out"
+    },
+    "upper": [
+     -1,
+     0
+    ],
+    "props": [
+     {
+      "id": "paddle",
+      "x": 14,
+      "y": 6
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "bent",
+     "arm_r": "bent"
+    },
+    "upper": [
+     1,
+     0
+    ],
+    "props": [
+     {
+      "id": "paddle",
+      "x": 5,
+      "y": 9
+     },
+     {
+      "id": "pball",
+      "x": 1,
+      "y": 9
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "bent",
+     "arm_r": "fwd"
+    },
+    "upper": [
+     1,
+     0
+    ],
+    "props": [
+     {
+      "id": "paddle",
+      "x": 2,
+      "y": 8
+     }
+    ]
+   },
+   {
+    "p": {
+     "arm_l": "bent",
+     "arm_r": "bent"
+    },
+    "props": [
+     {
+      "id": "paddle",
+      "x": 9,
+      "y": 6
+     }
+    ]
+   }
+  ]
+ }
+}

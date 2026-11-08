@@ -1,0 +1,18 @@
+{
+ "name": "lena",
+ "library": "res://pixel_chars/library/human.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "skin": "#f6c8a0",
+  "hair": "#e9b55d",
+  "shirt": "#9664d2",
+  "pants": "#34385a"
+ },
+ "variants": {
+  "head": "long",
+  "torso": "default"
+ },
+ "extras": []
+}

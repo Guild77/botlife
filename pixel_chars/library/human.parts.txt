@@ -1,0 +1,521 @@
+# Pixel Character Studio : bibliotheque de pieces "human"
+# Format : lignes @... = directives ; apres "@part vue piece variante x y" viennent les lignes de pixels.
+# Chaque lettre est un ROLE de couleur (voir @role). '.' = transparent. Ligne vide = fin de la piece.
+@lib human
+@grid 12 22
+@origin 14 15
+@frame 40 40
+@anchor 20 37
+@views se=front sw=front ne=back nw=back
+@order leg_l leg_r torso arm_l arm_r head extra
+@upper torso arm_l arm_r head extra
+@lower leg_l leg_r
+@rest head=short torso=default arm_l=down arm_r=down leg_l=stand leg_r=stand extra=none
+@color skin ffd6aa
+@color hair 2c222b
+@color eyes 1c1826
+@color glasses 3c405a
+@color shirt 3b6ed0
+@color pants 34385a
+@color shoes 222030
+@color tie d23c46
+@color cap e6783c
+@color ball e8883c
+@color paddle d23c3c
+@color wood a06e46
+@color white f4f4fa
+@color pen 2a2a40
+@color paper_line 9aa0c0
+@role s skin 1.0
+@role S skin 0.80
+@role h hair 1.0
+@role H hair 1.4
+@role e eyes 1.0
+@role g glasses 1.0
+@role t shirt 1.0
+@role T shirt 0.78
+@role p pants 1.0
+@role P pants 0.75
+@role b pants 0.6
+@role k shoes 1.0
+@role q tie 1.0
+@role C cap 1.0
+@role o ball 1.0
+@role O ball 0.62
+@role r paddle 1.0
+@role W wood 1.0
+@role w white 1.0
+@role n pen 1.0
+@role N pen 0.6
+@role l paper_line 1.0
+
+@part front leg_l lift 2 14
+.ppp
+.ppP
+.ppP
+.ppP
+.ppP
+kkkk
+
+@part front leg_l lift3 2 14
+.ppp
+.ppP
+.ppP
+.ppP
+kkkk
+
+@part front leg_l sit 2 16
+.ppp
+.ppP
+.ppP
+.ppP
+.ppP
+kkkk
+
+@part front leg_l stand 2 14
+.ppp
+.ppp
+.ppP
+.ppP
+.ppP
+.ppP
+.ppP
+kkkk
+
+@part front leg_r lift 6 14
+ppp.
+Ppp.
+Ppp.
+Ppp.
+Ppp.
+kkkk
+
+@part front leg_r lift3 6 14
+ppp.
+Ppp.
+Ppp.
+Ppp.
+kkkk
+
+@part front leg_r sit 6 16
+ppp.
+Ppp.
+Ppp.
+Ppp.
+Ppp.
+kkkk
+
+@part front leg_r stand 6 14
+ppp.
+ppp.
+Ppp.
+Ppp.
+Ppp.
+Ppp.
+Ppp.
+kkkk
+
+@part front torso default 2 8
+.ttSStt.
+.tttttt.
+.tttttt.
+.tttttt.
+.tttttt.
+bbbbbbbb
+
+@part front torso tie 2 8
+.ttSStt.
+.ttqqtt.
+.ttqqtt.
+.ttqqtt.
+.tttttt.
+bbbbbbbb
+
+@part front arm_l back 1 8
+tt
+tT
+tT
+tT
+sS
+sS
+
+@part front arm_l bent 1 8
+tt.
+tT.
+tT.
+sSs
+
+@part front arm_l down 1 8
+tt
+tT
+tT
+sS
+sS
+
+@part front arm_l fwd 1 8
+tt
+tT
+sS
+sS
+
+@part front arm_l out -3 8
+....tt
+ssSttt
+ssSttT
+
+@part front arm_l reach_a 1 8
+tt.
+tT.
+tT.
+sSs
+
+@part front arm_l reach_b 1 8
+tt.
+tT.
+tT.
+.sS
+
+@part front arm_l up 0 3
+ss.
+ss.
+sS.
+sS.
+tT.
+ttt
+.tT
+
+@part front arm_r back 9 8
+tt
+Tt
+Tt
+Tt
+Ss
+Ss
+
+@part front arm_r bent 8 8
+.tt
+.Tt
+.Tt
+sSs
+
+@part front arm_r down 9 8
+tt
+Tt
+Tt
+Ss
+Ss
+
+@part front arm_r fwd 9 8
+tt
+Tt
+Ss
+Ss
+
+@part front arm_r out 9 8
+tt....
+tttSss
+TttSss
+
+@part front arm_r reach_a 8 8
+.tt
+.Tt
+.Tt
+sSs
+
+@part front arm_r reach_b 8 8
+.tt
+.Tt
+.Tt
+Ss.
+
+@part front arm_r up 9 3
+.ss
+.ss
+.Ss
+.Ss
+.Tt
+ttt
+Tt.
+
+@part front head cap 0 0
+...CCCCCC...
+..CCCCCCCC..
+..CCCCCCCC..
+..hhsssshh..
+..hsessesh..
+..hssssssh..
+...ssssss...
+.....SS.....
+
+@part front head long 0 0
+...hhhhhh...
+..hHhhhhhh..
+..hhhhhhhh..
+..hhsssshh..
+..hsessesh..
+..hssssssh..
+..hhsssshh..
+..hh.SS.hh..
+..hh....hh..
+..hh....hh..
+
+@part front head short 0 0
+...hhhhhh...
+..hHhhhhhh..
+..hhhhhhhh..
+..hhsssshh..
+..hsessesh..
+..hssssssh..
+...ssssss...
+.....SS.....
+
+@part front extra glasses 3 4
+geggeg
+
+@part back leg_l lift 2 14
+.ppp
+.ppP
+.ppP
+.ppP
+.ppP
+kkkk
+
+@part back leg_l lift3 2 14
+.ppp
+.ppP
+.ppP
+.ppP
+kkkk
+
+@part back leg_l sit 2 16
+.ppp
+.ppP
+.ppP
+.ppP
+.ppP
+kkkk
+
+@part back leg_l stand 2 14
+.ppp
+.ppp
+.ppP
+.ppP
+.ppP
+.ppP
+.ppP
+kkkk
+
+@part back leg_r lift 6 14
+ppp.
+Ppp.
+Ppp.
+Ppp.
+Ppp.
+kkkk
+
+@part back leg_r lift3 6 14
+ppp.
+Ppp.
+Ppp.
+Ppp.
+kkkk
+
+@part back leg_r sit 6 16
+ppp.
+Ppp.
+Ppp.
+Ppp.
+Ppp.
+kkkk
+
+@part back leg_r stand 6 14
+ppp.
+ppp.
+Ppp.
+Ppp.
+Ppp.
+Ppp.
+Ppp.
+kkkk
+
+@part back torso default 2 8
+.tttttt.
+.tttttt.
+.tttttt.
+.tttttt.
+.tttttt.
+bbbbbbbb
+
+@part back arm_l back 1 8
+tt
+tT
+tT
+tT
+sS
+sS
+
+@part back arm_l bent 1 8
+tt.
+tT.
+tT.
+sSs
+
+@part back arm_l down 1 8
+tt
+tT
+tT
+sS
+sS
+
+@part back arm_l fwd 1 8
+tt
+tT
+sS
+sS
+
+@part back arm_l out -3 8
+....tt
+ssSttt
+ssSttT
+
+@part back arm_l reach_a 2 7
+.........s
+.......sss
+t.....sss.
+ttt.sss...
+.ttsss....
+...s......
+
+@part back arm_l reach_b 2 8
+........ss
+t.....ssss
+ttt.ssss..
+.ttsss....
+...s......
+
+@part back arm_l up 0 3
+ss.
+ss.
+sS.
+sS.
+tT.
+ttt
+.tT
+
+@part back arm_r back 9 8
+tt
+Tt
+Tt
+Tt
+Ss
+Ss
+
+@part back arm_r bent 8 8
+.tt
+.Tt
+.Tt
+sSs
+
+@part back arm_r down 9 8
+tt
+Tt
+Tt
+Ss
+Ss
+
+@part back arm_r fwd 9 8
+tt
+Tt
+Ss
+Ss
+
+@part back arm_r out 9 8
+tt....
+tttSss
+TttSss
+
+@part back arm_r reach_a 9 9
+t...ss
+ttssss
+.tss..
+
+@part back arm_r reach_b 9 8
+.....s
+t..sss
+ttsss.
+.ts...
+
+@part back arm_r up 9 3
+.ss
+.ss
+.Ss
+.Ss
+.Tt
+ttt
+Tt.
+
+@part back head cap 0 0
+...CCCCCC...
+..CCCCCCCC..
+..CCCCCCCC..
+..CCCCCCCC..
+..hhhhhhhh..
+..hhhhhhhh..
+...hhhhhh...
+.....SS.....
+
+@part back head long 0 0
+...hhhhhh...
+..hHhhhhhh..
+..hhhhhhhh..
+..hhhhhhhh..
+..hhhhhhhh..
+..hhhhhhhh..
+..hhhhhhhh..
+..hhhhhhhh..
+...hhhhhh...
+...hhhhhh...
+....hhhh....
+
+@part back head short 0 0
+...hhhhhh...
+..hHhhhhhh..
+..hhhhhhhh..
+..hhhhhhhh..
+..hhhhhhhh..
+..hhhhhhhh..
+...hhhhhh...
+.....SS.....
+
+@prop ball
+.ooo.
+oOOOo
+ooOoo
+oOOOo
+.ooo.
+
+@prop paddle
+.rrr.
+rrrrr
+rrrrr
+rrrrr
+.rrr.
+..W..
+..W..
+
+@prop pball
+ww
+ww
+
+@prop pen
+n
+n
+n
+N
+
+@prop paper
+wwwww
+wlwlw
+wwwww
+wlwlw
+

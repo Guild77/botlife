@@ -1,0 +1,4 @@
+.godot/
+*.import
+/pixel_chars/baked/
+__pycache__/

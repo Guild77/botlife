@@ -1,0 +1,20 @@
+{
+ "name": "sam",
+ "library": "res://pixel_chars/library/human.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "skin": "#ffd6aa",
+  "hair": "#733e39",
+  "shirt": "#de5454",
+  "pants": "#a08664"
+ },
+ "variants": {
+  "head": "short",
+  "torso": "tie"
+ },
+ "extras": [
+  "glasses"
+ ]
+}

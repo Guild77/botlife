@@ -1,0 +1,469 @@
+# Pixel Character Studio : bibliotheque de pieces "robot"
+# Format : lignes @... = directives ; apres "@part vue piece variante x y" viennent les lignes de pixels.
+# Chaque lettre est un ROLE de couleur (voir @role). '.' = transparent. Ligne vide = fin de la piece.
+@lib robot
+@grid 12 22
+@origin 14 15
+@frame 40 40
+@anchor 20 37
+@views se=front sw=front ne=back nw=back
+@order leg_l leg_r torso arm_l arm_r head extra
+@upper torso arm_l arm_r head extra
+@lower leg_l leg_r
+@rest head=default torso=default arm_l=down arm_r=down leg_l=stand leg_r=stand extra=none
+@color primary 5ca8c8
+@color dark 2e3452
+@color accent ffaa3c
+@color eye 5af4ff
+@color antenna ff5454
+@color metal c8cee0
+@color ball e8883c
+@color paddle d23c3c
+@color wood a06e46
+@color white f4f4fa
+@color pen 2a2a40
+@color paper_line 9aa0c0
+@role h primary 1.3
+@role m primary 1.0
+@role x primary 0.7
+@role d dark 1.0
+@role l accent 1.0
+@role c eye 1.0
+@role a antenna 1.0
+@role w metal 1.0
+@role o ball 1.0
+@role O ball 0.62
+@role r paddle 1.0
+@role W wood 1.0
+@role n pen 1.0
+@role N pen 0.6
+@role l accent 1.0
+
+@part front leg_l lift 2 14
+.mmm
+.mmx
+.mmx
+.mmx
+.mmx
+dddd
+
+@part front leg_l lift3 2 14
+.mmm
+.mmx
+.mmx
+.mmx
+dddd
+
+@part front leg_l sit 2 16
+.mmm
+.mmx
+.mmx
+.mmx
+.mmx
+dddd
+
+@part front leg_l stand 2 14
+.mmm
+.mmm
+.mmx
+.mmx
+.mmx
+.mmx
+.mmx
+dddd
+
+@part front leg_r lift 6 14
+mmm.
+xmm.
+xmm.
+xmm.
+xmm.
+dddd
+
+@part front leg_r lift3 6 14
+mmm.
+xmm.
+xmm.
+xmm.
+dddd
+
+@part front leg_r sit 6 16
+mmm.
+xmm.
+xmm.
+xmm.
+xmm.
+dddd
+
+@part front leg_r stand 6 14
+mmm.
+mmm.
+xmm.
+xmm.
+xmm.
+xmm.
+xmm.
+dddd
+
+@part front torso default 2 8
+.hhhhhh.
+.hhhhhh.
+.hdllch.
+.hhhhhh.
+.hmmmmh.
+xxxxxxxx
+
+@part front arm_l back 1 8
+mm
+mx
+mx
+mx
+dd
+dd
+
+@part front arm_l bent 1 8
+mm.
+mx.
+mx.
+ddd
+
+@part front arm_l down 1 8
+mm
+mx
+mx
+dd
+dd
+
+@part front arm_l fwd 1 8
+mm
+mx
+dd
+dd
+
+@part front arm_l out -3 8
+....mm
+dddmmm
+dddmmx
+
+@part front arm_l reach_a 1 8
+mm.
+mx.
+mx.
+ddd
+
+@part front arm_l reach_b 1 8
+mm.
+mx.
+mx.
+.dd
+
+@part front arm_l up 0 3
+dd.
+dd.
+dd.
+dd.
+mx.
+mmm
+.mx
+
+@part front arm_r back 9 8
+mm
+xm
+xm
+xm
+dd
+dd
+
+@part front arm_r bent 8 8
+.mm
+.xm
+.xm
+ddd
+
+@part front arm_r down 9 8
+mm
+xm
+xm
+dd
+dd
+
+@part front arm_r fwd 9 8
+mm
+xm
+dd
+dd
+
+@part front arm_r out 9 8
+mm....
+mmmddd
+xmmddd
+
+@part front arm_r reach_a 8 8
+.mm
+.xm
+.xm
+ddd
+
+@part front arm_r reach_b 8 8
+.mm
+.xm
+.xm
+dd.
+
+@part front arm_r up 9 3
+.dd
+.dd
+.dd
+.dd
+.xm
+mmm
+xm.
+
+@part front head default 0 0
+.....aa.....
+.....dd.....
+..hhhhhhhh..
+..mddddddm..
+..mdcddcdm..
+..mddddddm..
+..mmmmmmmm..
+....dddd....
+
+@part front head plain 0 0
+............
+............
+..hhhhhhhh..
+..mddddddm..
+..mdcddcdm..
+..mddddddm..
+..mmmmmmmm..
+....dddd....
+
+@part back leg_l lift 2 14
+.mmm
+.mmx
+.mmx
+.mmx
+.mmx
+dddd
+
+@part back leg_l lift3 2 14
+.mmm
+.mmx
+.mmx
+.mmx
+dddd
+
+@part back leg_l sit 2 16
+.mmm
+.mmx
+.mmx
+.mmx
+.mmx
+dddd
+
+@part back leg_l stand 2 14
+.mmm
+.mmm
+.mmx
+.mmx
+.mmx
+.mmx
+.mmx
+dddd
+
+@part back leg_r lift 6 14
+mmm.
+xmm.
+xmm.
+xmm.
+xmm.
+dddd
+
+@part back leg_r lift3 6 14
+mmm.
+xmm.
+xmm.
+xmm.
+dddd
+
+@part back leg_r sit 6 16
+mmm.
+xmm.
+xmm.
+xmm.
+xmm.
+dddd
+
+@part back leg_r stand 6 14
+mmm.
+mmm.
+xmm.
+xmm.
+xmm.
+xmm.
+xmm.
+dddd
+
+@part back torso default 2 8
+.hhhhhh.
+.hmddmh.
+.hmddmh.
+.hhhhhh.
+.hmmmmh.
+xxxxxxxx
+
+@part back arm_l back 1 8
+mm
+mx
+mx
+mx
+dd
+dd
+
+@part back arm_l bent 1 8
+mm.
+mx.
+mx.
+ddd
+
+@part back arm_l down 1 8
+mm
+mx
+mx
+dd
+dd
+
+@part back arm_l fwd 1 8
+mm
+mx
+dd
+dd
+
+@part back arm_l out -3 8
+....mm
+dddmmm
+dddmmx
+
+@part back arm_l reach_a 2 7
+.........d
+.......ddd
+m.....ddd.
+mmm.ddd...
+.mmddd....
+...d......
+
+@part back arm_l reach_b 2 8
+........dd
+m.....dddd
+mmm.dddd..
+.mmddd....
+...d......
+
+@part back arm_l up 0 3
+dd.
+dd.
+dd.
+dd.
+mx.
+mmm
+.mx
+
+@part back arm_r back 9 8
+mm
+xm
+xm
+xm
+dd
+dd
+
+@part back arm_r bent 8 8
+.mm
+.xm
+.xm
+ddd
+
+@part back arm_r down 9 8
+mm
+xm
+xm
+dd
+dd
+
+@part back arm_r fwd 9 8
+mm
+xm
+dd
+dd
+
+@part back arm_r out 9 8
+mm....
+mmmddd
+xmmddd
+
+@part back arm_r reach_a 9 9
+m...dd
+mmdddd
+.mdd..
+
+@part back arm_r reach_b 9 8
+.....d
+m..ddd
+mmddd.
+.md...
+
+@part back arm_r up 9 3
+.dd
+.dd
+.dd
+.dd
+.xm
+mmm
+xm.
+
+@part back head default 0 0
+.....aa.....
+.....dd.....
+..hhhhhhhh..
+..mmmmmmmm..
+..mddddddm..
+..mmmmmmmm..
+..mddddddm..
+....dddd....
+
+@part back head plain 0 0
+............
+............
+..hhhhhhhh..
+..mmmmmmmm..
+..mddddddm..
+..mmmmmmmm..
+..mddddddm..
+....dddd....
+
+@prop ball
+.ooo.
+oOOOo
+ooOoo
+oOOOo
+.ooo.
+
+@prop paddle
+.rrr.
+rrrrr
+rrrrr
+rrrrr
+.rrr.
+..W..
+..W..
+
+@prop pball
+ww
+ww
+
+@prop pen
+n
+n
+n
+N
+
