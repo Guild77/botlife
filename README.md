@@ -1,7 +1,7 @@
 # Bot Life
 
 Open space isométrique en pixel art, avec des humains et des robots (les bots) qui travaillent, jouent et se déplacent.
-Godot 4.4, rendu 2D, tri en profondeur par Y-sort.
+Godot 4.7, rendu 2D, tri en profondeur par Y-sort.
 
 Le projet contient trois choses :
 
@@ -11,7 +11,7 @@ Le projet contient trois choses :
 
 ## Lancer la démo
 
-Ouvrir le dossier dans Godot 4.4 ou plus, lancer le projet (F5). La scène principale est `scenes/office_demo.tscn`.
+Ouvrir le dossier dans Godot 4.7 (testé sur 4.7.2), lancer le projet (F5). La scène principale est `scenes/office_demo.tscn`.
 Les personnages sont composés à l'exécution, rien n'est à exporter.
 
 ## Le plugin « Persos »
@@ -65,7 +65,7 @@ python3 forge/export_office_assets.py  # décors vers assets/office/ + atlas.jso
 
 ## Tests
 
-Tests sans interface (nécessitent Godot 4.4 en ligne de commande) :
+Tests sans interface (nécessitent Godot 4.7 en ligne de commande) :
 
 ```
 godot --headless --path . --script tests/export_check.gd
@@ -80,4 +80,4 @@ Copier `addons/pixel_char_studio`, `pixel_chars` et (pour les décors) `assets/o
 
 ## État
 
-Version 0.1. Les tests ont été exécutés sur Godot 4.4.1 Linux (sans affichage et sous Xvfb). Le rendu n'a pas encore été vérifié sur Windows.
+Version 0.1. Les tests ont été exécutés sur Godot 4.7.2 Linux (et auparavant 4.4.1) (sans affichage et sous Xvfb). Le rendu n'a pas encore été vérifié sur Windows.
