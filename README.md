@@ -80,4 +80,4 @@ Copier `addons/pixel_char_studio`, `pixel_chars` et (pour les décors) `assets/o
 
 ## État
 
-Version 0.1. Les tests ont été exécutés sur Godot 4.7.2 Linux (et auparavant 4.4.1) (sans affichage et sous Xvfb). Le rendu n'a pas encore été vérifié sur Windows.
+Version 0.1. Testé sous Windows avec Godot 4.7 (confirmé par l'auteur), et en ligne de commande sur Godot 4.7.2 Linux (sans affichage et sous Xvfb).
