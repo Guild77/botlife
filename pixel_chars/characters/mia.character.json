@@ -1,0 +1,20 @@
+{
+ "name": "mia",
+ "library": "res://pixel_chars/library/human.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "skin": "#e0a878",
+  "hair": "#c8c8d0",
+  "shirt": "#d23c46",
+  "pants": "#1c2a4a"
+ },
+ "variants": {
+  "head": "cap",
+  "torso": "tie"
+ },
+ "extras": [
+  "glasses"
+ ]
+}

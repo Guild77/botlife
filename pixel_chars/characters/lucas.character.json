@@ -1,0 +1,20 @@
+{
+ "name": "lucas",
+ "library": "res://pixel_chars/library/human.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "skin": "#f2c28f",
+  "hair": "#4a3020",
+  "shirt": "#3b6ed0",
+  "pants": "#6a6a78"
+ },
+ "variants": {
+  "head": "cap",
+  "torso": "default"
+ },
+ "extras": [
+  "glasses"
+ ]
+}

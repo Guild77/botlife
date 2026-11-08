@@ -1,18 +1,45 @@
 # Bot Life
 
 Open space isométrique en pixel art, avec des humains et des robots (les bots) qui travaillent, jouent et se déplacent.
-Godot 4.7, rendu 2D, tri en profondeur par Y-sort.
+Godot 4.7, rendu 2D en 1920x1080 natif, tri en profondeur par Y-sort.
 
-Le projet contient trois choses :
+Le projet contient quatre choses :
 
-1. **Une scène démo** (`scenes/office_demo.tscn`) : un open space complet avec 9 postes de travail, un coin ping-pong, des bornes d'arcade, un salon, etc.
-2. **Pixel Char Studio** (`addons/pixel_char_studio`) : un plugin d'éditeur pour créer des personnages et leurs animations.
-3. **Les forges Python** (`forge/`) : scripts qui génèrent la bibliothèque de pièces, les animations, les personnages de départ et les décors.
+1. **Une scène de jeu** (`scenes/office_demo.tscn`) : un grand open space de 44 x 32 tuiles (45 bureaux, labo de bots, salon, arcade, ping-pong, coin café) avec une soixantaine d'habitants.
+2. **Le Craft** : l'éditeur de personnages, accessible en jeu (touche C) pour dessiner ou importer un personnage et modifier ses animations.
+3. **Pixel Char Studio** (`addons/pixel_char_studio`) : le même éditeur, en plugin Godot (onglet « Persos »).
+4. **Les forges Python** (`forge/`) : scripts qui génèrent la bibliothèque de pièces, les animations, les personnages et les décors.
 
 ## Lancer la démo
 
 Ouvrir le dossier dans Godot 4.7 (testé sur 4.7.2), lancer le projet (F5). La scène principale est `scenes/office_demo.tscn`.
 Les personnages sont composés à l'exécution, rien n'est à exporter.
+
+La résolution native est de 1920x1080 : les sprites gardent leur taille de pixel art (1 pixel d'art = 1 pixel d'écran) et le zoom se fait dans le jeu.
+
+| Commande | Action |
+|---|---|
+| Flèches ou ZQSD (WASD) | déplacer la caméra |
+| Clic droit (ou molette enfoncée) + glisser | déplacer la caméra |
+| Molette | zoom x1, x2, x3, x4 (centré sur la souris) |
+| C ou bouton « Craft » | ouvrir le Craft |
+| Échap (dans le Craft) | retour au bureau |
+
+## Le Craft : créer un personnage en jeu
+
+Touche **C** : le jeu se met en pause et l'éditeur s'ouvre en plein écran. Étapes :
+
+1. **Nouveau (copie)** : donner un nom. Par défaut la case « Pièces et animations à moi » est cochée : le personnage a sa propre bibliothèque de pièces et d'animations, on peut tout modifier sans toucher aux autres.
+2. **Personnage** : couleurs (peau, cheveux, haut, bas...), coiffure, accessoires.
+3. **Pieces (pixels)** : dessiner une pièce au pixel (clic gauche peint, clic droit efface, les boutons de couleur sont des rôles). **Copier en nouvelle variante** crée par exemple une nouvelle coiffure, de face et de dos.
+4. **Importer PNG...** : choisir une image (PNG, WebP, JPG). Elle devient une nouvelle variante de la pièce affichée : réduite si elle dépasse la grille du corps (12 x 22), chaque pixel est rapproché du rôle de couleur le plus proche, donc les couleurs restent modifiables. Ensuite on retouche au pixel si besoin, puis on la choisit dans l'onglet Personnage.
+5. **Animations** : toute la bibliothèque (marche, assis, ping-pong...) fonctionne immédiatement avec la nouvelle apparence. On peut la modifier image par image ou en créer de nouvelles (à la main ou avec l'assistant IA).
+6. **Sauver tout**, puis **Retour au bureau** : le personnage apparaît dans l'open space, à un bureau libre ou en promenade.
+
+Les personnages créés en jeu sont enregistrés dans le dossier utilisateur du jeu (sous Windows `%APPDATA%\Godot\app_userdata\Bot Life\characters`) et réapparaissent à chaque lancement. Les personnages du projet (dossier `pixel_chars/characters`) restent modifiables lors d'un lancement depuis l'éditeur Godot, mais en lecture seule dans un jeu exporté : utiliser alors « Nouveau (copie) ».
+
+Limite actuelle : seules deux vues sont dessinées (face et dos), les 4 directions s'obtiennent par miroir. L'import d'une image alimente la vue affichée (face ou dos), la vue opposée reçoit une copie de la pièce de repos, à retoucher.
+
 
 ## Le plugin « Persos »
 
@@ -60,6 +87,7 @@ Seules deux vues sont dessinées (face et dos). Les 4 directions sont obtenues p
 
 ```
 python3 forge/make_library.py          # pièces, animations, personnages de départ
+python3 forge/make_population.py       # 16 humains et 6 robots supplémentaires (couleurs aléatoires fixes)
 python3 forge/export_office_assets.py  # décors vers assets/office/ + atlas.json
 ```
 
@@ -70,8 +98,10 @@ Tests sans interface (nécessitent Godot 4.7 en ligne de commande) :
 ```
 godot --headless --path . --script tests/export_check.gd
 godot --headless --path . tests/logic_check.tscn
+godot --headless --path . tests/craft_check.tscn
 ```
 
+`craft_check.tscn` teste le Craft de bout en bout (nouveau personnage, import PNG, sauvegarde, rechargement).
 `ui_check.tscn` vérifie l'interface du plugin (à lancer avec un affichage, ou sous `xvfb-run`).
 
 ## Utiliser dans un autre projet Godot

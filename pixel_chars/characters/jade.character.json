@@ -1,0 +1,20 @@
+{
+ "name": "jade",
+ "library": "res://pixel_chars/library/human.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "skin": "#c68b5c",
+  "hair": "#141414",
+  "shirt": "#d23c46",
+  "pants": "#7a5a3a"
+ },
+ "variants": {
+  "head": "long",
+  "torso": "default"
+ },
+ "extras": [
+  "glasses"
+ ]
+}

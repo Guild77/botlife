@@ -1,0 +1,18 @@
+{
+ "name": "nina",
+ "library": "res://pixel_chars/library/human.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "skin": "#e0a878",
+  "hair": "#4a3020",
+  "shirt": "#3b6ed0",
+  "pants": "#5a4a3a"
+ },
+ "variants": {
+  "head": "long",
+  "torso": "tie"
+ },
+ "extras": []
+}

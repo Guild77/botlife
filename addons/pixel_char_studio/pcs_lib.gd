@@ -6,6 +6,11 @@ extends RefCounted
 
 const DIRS := ["se", "sw", "ne", "nw"]
 const OUTLINE_K := 0.38
+const DEFAULT_CHAR_DIR := "res://pixel_chars/characters"
+
+## Dossier des personnages crees par le joueur (ex: "user://characters" dans le jeu).
+## Vide = tout reste dans res:// (utilisation dans l'editeur).
+static var user_dir := ""
 
 
 # ====================================================================== Library
@@ -46,6 +51,19 @@ class Library:
 			if String(k).begins_with(prefix):
 				out.append(String(k).substr(prefix.length()))
 		return out
+
+	## Cree la variante 'variant' de la piece pour la vue opposee si elle n'existe pas encore
+	## (copie de la variante de repos), pour que la piece existe de face ET de dos.
+	func ensure_both_views(part: String, variant: String) -> void:
+		for v in ["front", "back"]:
+			var k := "%s/%s/%s" % [v, part, variant]
+			if parts.has(k):
+				continue
+			var rv: String = rest.get(part, "default")
+			var src := "%s/%s/%s" % [v, part, rv]
+			if parts.has(src):
+				parts[k] = parts[src].duplicate(true)
+				part_keys.append(k)
 
 	func part_names() -> Array:
 		return order.duplicate()
@@ -453,7 +471,8 @@ static func get_sprite_frames(char_path: String, force: bool = false) -> SpriteF
 
 # ====================================================================== Export / baked
 static func baked_dir(char_path: String) -> String:
-	return "res://pixel_chars/baked/%s" % char_path.get_file().get_basename().trim_suffix(".character")
+	var root := "user://baked" if char_path.begins_with("user://") else "res://pixel_chars/baked"
+	return "%s/%s" % [root, char_path.get_file().get_basename().trim_suffix(".character")]
 
 
 ## Ecrit une feuille PNG par animation (lignes = directions se,sw,ne,nw ; colonnes = frames) + atlas.json
@@ -523,7 +542,53 @@ static func load_baked(char_path: String) -> SpriteFrames:
 
 
 # ====================================================================== Utilitaires
-static func list_characters(dir: String = "res://pixel_chars/characters") -> Array:
+## Dossier ou sont enregistres les nouveaux personnages.
+static func new_char_dir() -> String:
+	var d := user_dir if user_dir != "" else DEFAULT_CHAR_DIR
+	if d.begins_with("user://") and not DirAccess.dir_exists_absolute(d):
+		DirAccess.make_dir_recursive_absolute(d)
+	return d
+
+
+## Tous les personnages : ceux du projet, puis ceux du joueur.
+static func all_characters() -> Array:
+	var out := list_characters(DEFAULT_CHAR_DIR)
+	if user_dir != "":
+		out.append_array(list_characters(user_dir))
+	return out
+
+
+## Convertit une image en lignes de lettres-roles : chaque pixel prend le role dont la couleur
+## (palette courante) est la plus proche. Les pixels peu opaques deviennent '.'.
+## Si l'image depasse max_size elle est reduite (proportions conservees).
+static func image_to_rows(src: Image, palette: Dictionary, max_size: Vector2i, alpha_cut: float = 0.5) -> Array:
+	var img := src.duplicate() as Image
+	img.convert(Image.FORMAT_RGBA8)
+	if img.get_width() > max_size.x or img.get_height() > max_size.y:
+		var k := minf(float(max_size.x) / img.get_width(), float(max_size.y) / img.get_height())
+		img.resize(maxi(1, roundi(img.get_width() * k)), maxi(1, roundi(img.get_height() * k)), Image.INTERPOLATE_LANCZOS)
+	var rows: Array = []
+	for y in img.get_height():
+		var line := ""
+		for x in img.get_width():
+			var c := img.get_pixel(x, y)
+			if c.a < alpha_cut:
+				line += "."
+				continue
+			var best := "."
+			var bd := 1e9
+			for r in palette:
+				var pc: Color = palette[r]
+				var d := (pc.r - c.r) * (pc.r - c.r) + (pc.g - c.g) * (pc.g - c.g) + (pc.b - c.b) * (pc.b - c.b)
+				if d < bd:
+					bd = d
+					best = String(r)
+			line += best
+		rows.append(line)
+	return rows
+
+
+static func list_characters(dir: String = DEFAULT_CHAR_DIR) -> Array:
 	var out: Array = []
 	var d := DirAccess.open(dir)
 	if d == null:

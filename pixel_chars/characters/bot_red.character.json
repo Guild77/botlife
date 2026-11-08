@@ -1,0 +1,15 @@
+{
+ "name": "bot_red",
+ "library": "res://pixel_chars/library/robot.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "primary": "#5ca8c8"
+ },
+ "variants": {
+  "head": "default",
+  "torso": "default"
+ },
+ "extras": []
+}

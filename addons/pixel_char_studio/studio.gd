@@ -3,7 +3,8 @@ class_name PCSStudio
 extends Control
 ## Ecran principal "Persos" : apercu anime, editeur d'animations, de personnage, de pixels, assistant IA.
 
-const CHAR_DIR := "res://pixel_chars/characters"
+
+signal char_saved(path: String)
 
 var ch: PCSLib.Character
 var cur_anim := ""
@@ -60,7 +61,7 @@ func _ready() -> void:
 	top.add_child(_lbl("Personnage :"))
 	char_opt = OptionButton.new()
 	char_opt.custom_minimum_size.x = 180
-	char_opt.item_selected.connect(func(i): _load_char(char_opt.get_item_text(i)))
+	char_opt.item_selected.connect(func(i): _load_char_path(String(char_opt.get_item_metadata(i))))
 	top.add_child(char_opt)
 	top.add_child(_btn("Nouveau (copie)", _on_new_char))
 	top.add_child(_btn("Sauver tout", _save_all))
@@ -150,24 +151,26 @@ func _clear(n: Node) -> void:
 # ============================================================ chargement
 func _refresh_char_list(select: String = "") -> void:
 	char_opt.clear()
-	var list := PCSLib.list_characters(CHAR_DIR)
+	var list := PCSLib.all_characters()
 	for p in list:
-		char_opt.add_item(String(p).get_file().trim_suffix(".character.json"))
+		var nm: String = String(p).get_file().trim_suffix(".character.json")
+		char_opt.add_item(nm + ("  (moi)" if String(p).begins_with("user://") else ""))
+		char_opt.set_item_metadata(char_opt.item_count - 1, p)
 	if list.size() > 0:
 		var idx := 0
 		for i in char_opt.item_count:
-			if char_opt.get_item_text(i) == select:
+			if String(char_opt.get_item_metadata(i)).get_file().trim_suffix(".character.json") == select:
 				idx = i
 		char_opt.select(idx)
-		_load_char(char_opt.get_item_text(idx))
+		_load_char_path(String(char_opt.get_item_metadata(idx)))
 	else:
-		_say("Aucun personnage dans " + CHAR_DIR)
+		_say("Aucun personnage")
 
 
-func _load_char(nm: String) -> void:
-	ch = PCSLib.load_character("%s/%s.character.json" % [CHAR_DIR, nm])
+func _load_char_path(path: String) -> void:
+	ch = PCSLib.load_character(path)
 	if ch == null:
-		_say("Chargement impossible : " + nm)
+		_say("Chargement impossible : " + path)
 		return
 	_refresh_anim_list()
 	_build_perso_tab_content()
@@ -181,8 +184,12 @@ func _save_all() -> void:
 	var e1 := ch.save()
 	var e2 := ch.save_anims()
 	var e3 := ch.lib.save()
-	_say("Sauve (personnage %s, animations %s, pieces %s)" % ["ok" if e1 == OK else "ERREUR", "ok" if e2 == OK else "ERREUR", "ok" if e3 == OK else "ERREUR"])
+	if e1 != OK or e2 != OK or e3 != OK:
+		_say("Sauvegarde impossible (fichiers du projet en lecture seule ?). Fais 'Nouveau (copie)' : ta copie est modifiable.")
+		return
+	_say("Sauve : %s (personnage, animations, pieces)" % ch.char_name)
 	_rescan()
+	char_saved.emit(ch.path)
 
 
 func _rescan() -> void:
@@ -204,22 +211,58 @@ func _on_new_char() -> void:
 		return
 	var dlg := ConfirmationDialog.new()
 	dlg.title = "Nouveau personnage (copie du courant)"
+	var box := VBoxContainer.new()
 	var le := LineEdit.new()
 	le.placeholder_text = "nom (ex: lucie)"
-	dlg.add_child(le)
+	box.add_child(le)
+	var own := CheckBox.new()
+	own.text = "Pieces et animations a moi (les modifier ne change pas les autres persos)"
+	own.button_pressed = true
+	box.add_child(own)
+	dlg.add_child(box)
 	dlg.confirmed.connect(func():
 		var nm := le.text.strip_edges().to_lower().replace(" ", "_")
 		if nm == "":
 			return
+		var dir := PCSLib.new_char_dir()
 		var d := ch.to_json()
 		d["name"] = nm
-		var f := FileAccess.open("%s/%s.character.json" % [CHAR_DIR, nm], FileAccess.WRITE)
+		if own.button_pressed:
+			var lib_path := "%s/%s.parts.txt" % [dir, nm]
+			var old_path := ch.lib.path
+			ch.lib.path = lib_path
+			ch.lib.save()
+			ch.lib.path = old_path
+			d["library"] = lib_path
+			var new_files: Array = []
+			var by_file := {}
+			for a in ch.anims:
+				var src: String = ch.anim_origin.get(a, "")
+				if not by_file.has(src):
+					by_file[src] = {}
+				by_file[src][a] = ch.anims[a]
+			var i := 0
+			for src in by_file:
+				var np := "%s/%s.anims%s.json" % [dir, nm, "" if i == 0 else str(i)]
+				var fa := FileAccess.open(np, FileAccess.WRITE)
+				if fa:
+					fa.store_string(JSON.stringify(by_file[src], "\t"))
+					fa.close()
+					new_files.append(np)
+				i += 1
+			d["anims"] = new_files
+		var f := FileAccess.open("%s/%s.character.json" % [dir, nm], FileAccess.WRITE)
+		if f == null:
+			_say("Creation impossible dans %s" % dir)
+			return
 		f.store_string(JSON.stringify(d, "\t"))
 		f.close()
 		_refresh_char_list(nm)
+		_rescan()
+		char_saved.emit("%s/%s.character.json" % [dir, nm])
 		dlg.queue_free())
 	add_child(dlg)
-	dlg.popup_centered(Vector2i(360, 110))
+	dlg.popup_centered(Vector2i(520, 150))
 
 
 # ============================================================ apercu
@@ -825,6 +868,7 @@ func _build_pixel_tab() -> void:
 	top.add_child(px_var)
 	top.add_child(_btn("Copier en nouvelle variante", _px_new_variant))
 	top.add_child(_btn("Supprimer variante", _px_del_variant))
+	top.add_child(_btn("Importer PNG...", _px_import_png))
 	top.add_child(_btn("Rogner", func(): px_canvas.trim(); _px_edited()))
 	top.add_child(_btn("Sauver pieces", func(): _save_all()))
 	var hint := _lbl("Clic gauche : peindre | clic droit : effacer | cadre jaune = piece, cadre blanc = grille du corps")
@@ -922,6 +966,7 @@ func _px_new_variant() -> void:
 		var nk := "%s/%s/%s" % [seg[0], seg[1], nm]
 		ch.lib.parts[nk] = ch.lib.parts[k].duplicate(true)
 		ch.lib.part_keys.append(nk)
+		ch.lib.ensure_both_views(seg[1], nm)
 		_refresh_pixel_variants()
 		for i in px_var.item_count:
 			if px_var.get_item_text(i) == nm:
@@ -930,6 +975,50 @@ func _px_new_variant() -> void:
 		dlg.queue_free())
 	add_child(dlg)
 	dlg.popup_centered(Vector2i(340, 110))
+
+
+## Importe une image PNG comme nouvelle variante de la piece affichee : chaque pixel est
+## rapproche du role de couleur le plus proche (le perso garde donc ses couleurs modifiables).
+func _px_import_png() -> void:
+	if ch == null or px_part.item_count == 0:
+		return
+	var fd := FileDialog.new()
+	fd.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	fd.access = FileDialog.ACCESS_FILESYSTEM
+	fd.use_native_dialog = true
+	fd.filters = PackedStringArray(["*.png, *.webp, *.jpg ; Images"])
+	fd.title = "Image a importer comme piece '%s'" % px_part.get_item_text(px_part.selected)
+	fd.file_selected.connect(func(path):
+		var img := Image.load_from_file(path)
+		if img == null or img.is_empty():
+			_say("Image illisible : " + path)
+			fd.queue_free()
+			return
+		var view := px_view.get_item_text(px_view.selected)
+		var part := px_part.get_item_text(px_part.selected)
+		var rows := PCSLib.image_to_rows(img, ch.palette(), ch.lib.grid)
+		var w := 1
+		for r in rows:
+			w = maxi(w, String(r).length())
+		var ref_k := _px_key()
+		var y0: int = int(ch.lib.parts[ref_k].y) if ref_k != "" and ch.lib.parts.has(ref_k) else 0
+		var nm: String = String(path).get_file().get_basename().replace(" ", "_")
+		var nk := "%s/%s/%s" % [view, part, nm]
+		ch.lib.parts[nk] = {"x": (ch.lib.grid.x - w) / 2, "y": y0, "rows": rows}
+		if not ch.lib.part_keys.has(nk):
+			ch.lib.part_keys.append(nk)
+		ch.lib.ensure_both_views(part, nm)
+		_refresh_pixel_variants()
+		for i in px_var.item_count:
+			if px_var.get_item_text(i) == nm:
+				px_var.select(i)
+		_load_pixel_part()
+		_px_edited()
+		_say("Image importee : variante '%s' de %s/%s (%dx%d pixels). Ajuste avec le dessin, puis choisis-la dans l'onglet Personnage." % [nm, view, part, w, rows.size()])
+		fd.queue_free())
+	fd.canceled.connect(func(): fd.queue_free())
+	add_child(fd)
+	fd.popup_centered_ratio(0.7)
 
 
 func _px_del_variant() -> void:
@@ -1015,7 +1104,7 @@ func _build_perso_tab_content() -> void:
 
 
 func _make_personal_anims() -> void:
-	var p := "%s/%s.anims.json" % [CHAR_DIR, ch.char_name]
+	var p := "%s/%s.anims.json" % [ch.path.get_base_dir(), ch.char_name]
 	if not ch.anim_files.has(p):
 		ch.anim_files.append(p)
 		var f := FileAccess.open(p, FileAccess.WRITE)

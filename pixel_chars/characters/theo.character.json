@@ -1,0 +1,18 @@
+{
+ "name": "theo",
+ "library": "res://pixel_chars/library/human.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "skin": "#ffd6aa",
+  "hair": "#b8402c",
+  "shirt": "#5ac8c8",
+  "pants": "#34385a"
+ },
+ "variants": {
+  "head": "cap",
+  "torso": "default"
+ },
+ "extras": []
+}

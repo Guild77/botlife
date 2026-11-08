@@ -1,0 +1,15 @@
+{
+ "name": "bot_yellow",
+ "library": "res://pixel_chars/library/robot.parts.txt",
+ "anims": [
+  "res://pixel_chars/library/human.anims.json"
+ ],
+ "colors": {
+  "primary": "#9a6ad0"
+ },
+ "variants": {
+  "head": "default",
+  "torso": "default"
+ },
+ "extras": []
+}
